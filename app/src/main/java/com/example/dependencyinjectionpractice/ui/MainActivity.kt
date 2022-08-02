@@ -3,6 +3,8 @@ package com.example.dependencyinjectionpractice.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dependencyinjectionpractice.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +29,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeDogBreeds() {
         viewModel.dogBreeds.observe(this){
-            //TODO
+            val dogsList = findViewById<RecyclerView>(R.id.dogs_list)
+            dogsList.layoutManager = LinearLayoutManager(this)
+            dogsList.adapter = DogsAdapter(it)
 
         }
     }
